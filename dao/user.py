@@ -12,6 +12,9 @@ class UserDAO():
     def get_user_by_id(self, uid):
         return self.session.query(User).filter(User.id == uid).one()
 
+    def get_user_by_username(self, username):
+        return self.session.query(User).filter(User.username == username).one()
+
 
     def create_user(self, **kwargs):
         try:
