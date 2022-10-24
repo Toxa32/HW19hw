@@ -3,12 +3,14 @@ from flask_restx import Resource, Namespace
 
 from dao.model.user import UserSchema
 from implemented import user_service
+from decorators import auth_required, admin_required
 
 user_ns = Namespace('user')
 
 
 @user_ns.route('/')
 class UsersView(Resource):
+
     def get(self):
         rs = user_service.get_all()
         res = UserSchema(many=True).dump(rs)
