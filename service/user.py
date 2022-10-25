@@ -19,7 +19,7 @@ class UserService:
     def get_all(self):
         return self.dao.get_all_users()
 
-    def create(self, user_data):
+    def create(self, **user_data):
         user_data["password"] = self.get_hash(user_data["password"])
         return self.dao.create_user(**user_data)
 
@@ -41,8 +41,8 @@ class UserService:
             password.encode('utf-8'),
             PWD_HASH_SALT,
             PWD_HASH_ITERATIONS
-        )
-        return base64.b64encode(hash_digest)
+        ).decode("utf-8", "ignore")
+        return hash_digest
 
     def compare_passwords(self, password_hash, other_password) -> bool:
         """

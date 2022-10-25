@@ -3,9 +3,9 @@ from flask_restx import Resource, Namespace
 
 from dao.model.user import UserSchema
 from implemented import user_service
-from decorators import auth_required, admin_required
 
-user_ns = Namespace('user')
+
+user_ns = Namespace('users')
 
 
 @user_ns.route('/')
@@ -19,7 +19,7 @@ class UsersView(Resource):
     def post(self):
         req_json = request.json
         new_user = user_service.create(**req_json)
-        return "", 201, {"location": f"/users/{new_user.id}"}
+        return "", 201, {"location": f"/users/"}
 
 
 @user_ns.route('/<int:rid>')

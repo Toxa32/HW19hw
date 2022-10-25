@@ -34,8 +34,9 @@ def create_data(app, db, user_db):
         user_db.create_all()
 
 
+
 app = create_app(Config())
 app.debug = True
-
+create_data(app, db, user_db)
 if __name__ == '__main__':
-    app.run(host="localhost", port=10001, debug=True)
+    app.run(host="127.0.0.1", port=5000, debug=True)
