@@ -41,8 +41,8 @@ class UserService:
             password.encode('utf-8'),
             PWD_HASH_SALT,
             PWD_HASH_ITERATIONS
-        ).decode("utf-8", "ignore")
-        return hash_digest
+        )
+        return base64.b64encode(hash_digest)
 
     def compare_passwords(self, password_hash, other_password) -> bool:
         """

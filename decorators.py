@@ -15,7 +15,7 @@ def auth_required(func):
         try:
             jwt.decode(token, JWT_SECRET, algorithms=JWT_ALGORITHM)
         except Exception as e:
-            print("JWT Decode Exeption", e)
+            print("JWT Decode Exception", e)
             abort(401)
         return func(*args, **kwargs)
 
@@ -35,7 +35,7 @@ def admin_required(func):
             user = jwt.decode(token, JWT_SECRET, algorithms=JWT_ALGORITHM)
             role = user.get("role", "user")
         except Exception as e:
-            print("JWT Decode Exeption", e)
+            print("JWT Decode Exception", e)
             abort(401)
 
         if role != "admin":
